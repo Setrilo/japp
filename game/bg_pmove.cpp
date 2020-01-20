@@ -918,58 +918,21 @@ static void PM_Friction( void ) {
 
 // Handles user intended acceleration
 static void PM_Accelerate( vector3 *wishdir, float wishspeed, float accel ) {
-	if ( pm->gametype != GT_SIEGE
-		|| pm->ps->m_iVehicleNum
-		|| pm->ps->clientNum >= MAX_CLIENTS
-		|| pm->ps->pm_type != PM_NORMAL ) { //standard method, allows "bunnyhopping" and whatnot
-		int			i;
-		float		addspeed, accelspeed, currentspeed;
+	vector3		wishVelocity;
+	vector3		pushDir;
+	float		pushLen;
+	float		canPush;
 
-		currentspeed = DotProduct( &pm->ps->velocity, wishdir );
-		addspeed = wishspeed - currentspeed;
-		if ( addspeed <= 0 && pm->ps->clientNum < MAX_CLIENTS ) {
-			return;
-		}
+	VectorScale( wishdir, wishspeed, &wishVelocity );
+	VectorSubtract( &wishVelocity, &pm->ps->velocity, &pushDir );
+	pushLen = VectorNormalize( &pushDir );
 
-		if ( GetCInfo( CINFO_VQ3PHYS ) ) {
-			accelspeed = accel*pml.frametime*wishspeed;
-			if ( accelspeed > addspeed )
-				accelspeed = addspeed;
-		}
-		else {
-			if ( addspeed < 0 ) {
-				accelspeed = (-accel)*pml.frametime*wishspeed;
-				if ( accelspeed < addspeed )
-					accelspeed = addspeed;
-			}
-			else {
-				accelspeed = accel*pml.frametime*wishspeed;
-				if ( accelspeed > addspeed )
-					accelspeed = addspeed;
-			}
-		}
-
-		for ( i = 0; i < 3; i++ ) {
-			pm->ps->velocity.raw[i] += accelspeed * wishdir->raw[i];
-		}
+	canPush = accel*pml.frametime*wishspeed;
+	if ( canPush > pushLen ) {
+		canPush = pushLen;
 	}
-	else { //use the proper way for siege
-		vector3		wishVelocity;
-		vector3		pushDir;
-		float		pushLen;
-		float		canPush;
 
-		VectorScale( wishdir, wishspeed, &wishVelocity );
-		VectorSubtract( &wishVelocity, &pm->ps->velocity, &pushDir );
-		pushLen = VectorNormalize( &pushDir );
-
-		canPush = accel*pml.frametime*wishspeed;
-		if ( canPush > pushLen ) {
-			canPush = pushLen;
-		}
-
-		VectorMA( &pm->ps->velocity, canPush, &pushDir, &pm->ps->velocity );
-	}
+	VectorMA( &pm->ps->velocity, canPush, &pushDir, &pm->ps->velocity );
 }
 
 // Returns the scale factor to apply to cmd movements
