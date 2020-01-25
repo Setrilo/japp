@@ -899,7 +899,17 @@ qboolean UI_ForcePowerRank_HandleKey( uint32_t flags, float *special, int key, i
 		int forcepower, rank;
 
 		//this will give us the index as long as UI_FORCE_RANK is always one below the first force rank index
-		forcepower = (type - UI_FORCE_RANK) - 1;
+		//[Old JAPP Code] forcepower = (type - UI_FORCE_RANK) - 1;
+		//[Gunnery System]
+		if(type < UI_FORCE_RANK_PISTOL)
+		{
+			forcepower = (type - UI_FORCE_RANK)-1;
+		}
+		else
+		{//use a different index shift for the addition skills
+			forcepower = (type - UI_FORCE_RANK_PISTOL)+(UI_FORCE_RANK_SABERTHROW-UI_FORCE_RANK);
+		}
+		//[End Gunnery System]
 
 		//the power is disabled on the server
 		if ( uiForcePowersDisabled[forcepower] ) {
