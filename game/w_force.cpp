@@ -93,6 +93,14 @@ void WP_InitForcePowers( gentity_t *ent ) {
 		ent->client->ps.fd.forcePowerLevel[i] = 0;
 		ent->client->ps.fd.forcePowersKnown &= ~(1 << i);
 	}
+	
+	//[Gunnery System]
+	//racc - reset additional skills
+	for(i=0; i < NUM_SKILLS; i++)
+	{
+		ent->client->skillLevel[i] = 0;
+	}
+	//[End Gunnery System]
 
 	ent->client->ps.fd.forcePowerSelected = 0xFFFFFFFFu;
 	ent->client->ps.fd.forceSide = 0;
