@@ -16,7 +16,11 @@ qboolean gTouchedForce = qfalse;
 
 void Menu_ShowItemByName( menuDef_t *menu, const char *p, qboolean bShow );
 
-qboolean uiForcePowersDisabled[NUM_FORCE_POWERS] = {
+//[Old JAPP Code] qboolean uiForcePowersDisabled[NUM_FORCE_POWERS] = {
+//[Gunnery System]
+//Disables force powers when Force Disabled, not Gunnery Skills
+qboolean uiForcePowersDisabled[NUM_TOTAL_SKILLS] = {
+//[End Gunnery System]
 	qfalse,//FP_HEAL,//instant
 	qfalse,//FP_LEVITATION,//hold/duration
 	qfalse,//FP_SPEED,//duration
@@ -37,7 +41,10 @@ qboolean uiForcePowersDisabled[NUM_FORCE_POWERS] = {
 	qfalse//FP_SABERTHROW,
 };
 
-int uiForcePowersRank[NUM_FORCE_POWERS] = {
+//[Old JAPP Code] int uiForcePowersRank[NUM_FORCE_POWERS] = {
+//[Gunnery System]
+int uiForcePowersRank[NUM_TOTAL_SKILLS] = {
+//[End Gunnery System]
 	0,//FP_HEAL = 0,//instant
 	1,//FP_LEVITATION,//hold/duration, this one defaults to 1 (gives a free point)
 	0,//FP_SPEED,//duration
@@ -53,12 +60,26 @@ int uiForcePowersRank[NUM_FORCE_POWERS] = {
 	0,//FP_TEAM_FORCE,
 	0,//FP_DRAIN,
 	0,//FP_SEE,
-	1,//FP_SABER_OFFENSE, //default to 1 point in attack
-	1,//FP_SABER_DEFENSE, //defualt to 1 point in defense
+	//[Gunnery System]
+	0,//FP_SABER_OFFENSE, //default to 1 point in attack
+	0,//FP_SABER_DEFENSE, //defualt to 1 point in defense
+	//[End Gunnery System]
+	//[Old JAPP Code] 1,//FP_SABER_OFFENSE, //default to 1 point in attack
+	//[Old JAPP Code] 1,//FP_SABER_DEFENSE, //defualt to 1 point in defense
 	0//FP_SABERTHROW,
+		
+	//[Gunnery System]
+	0,//SK_PISTOL,
+	0,//SK_BLASTER,		
+	0,//SK_THERMAL,	
+	0,//SK_ROCKET,
+	//[End Gunnery System]
 };
 
-const forceSide_t uiForcePowerDarkLight[NUM_FORCE_POWERS] = {
+//[Old JAPP Code] const forceSide_t uiForcePowerDarkLight[NUM_FORCE_POWERS] = {
+//[Gunnery System]
+const forceSide_t uiForcePowerDarkLight[NUM_TOTAL_SKILLS] = {
+//[End Gunnery System]
 	FORCESIDE_LIGHT,//FP_HEAL,//instant
 	FORCESIDE_NEUTRAL,//FP_LEVITATION,//hold/duration
 	FORCESIDE_NEUTRAL,//FP_SPEED,//duration
@@ -76,7 +97,15 @@ const forceSide_t uiForcePowerDarkLight[NUM_FORCE_POWERS] = {
 	FORCESIDE_NEUTRAL,//FP_SEE,//duration
 	FORCESIDE_NEUTRAL,//FP_SABER_OFFENSE,
 	FORCESIDE_NEUTRAL,//FP_SABER_DEFENSE,
-	FORCESIDE_NEUTRAL//FP_SABERTHROW,
+	
+	//[Old JAPP Code] FORCESIDE_NEUTRAL//FP_SABERTHROW,
+	//[Gunnery System]
+	FORCESIDE_NEUTRAL,//FP_SABERTHROW,
+	FORCESIDE_NEUTRAL,//SK_PISTOL,
+	FORCESIDE_NEUTRAL,//SK_BLASTER,		
+	FORCESIDE_NEUTRAL,//SK_THERMAL,	
+	FORCESIDE_NEUTRAL,//SK_ROCKET,
+	//[End Gunnery System]
 };
 
 int uiForceStarShaders[NUM_FORCE_STAR_IMAGES][2];
@@ -149,14 +178,22 @@ void UI_DrawForceStars( rectDef_t *rect, float scale, const vector4 *color, uiTe
 
 // Set the client's force power layout.
 void UI_UpdateClientForcePowers( const char *teamArg ) {
-	trap->Cvar_Set( "forcepowers", va( "%i-%i-%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i",
+	//[Old JAPP Code] trap->Cvar_Set( "forcepowers", va( "%i-%i-%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i",
+	//[Gunnery System]
+	//Added Four More %i's (Pistol, Blaster, Thermals, Rockets)
+	trap->Cvar_Set( "forcepowers", va( "%i-%i-%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i%i",
+	//[End Gunnery System]
 		uiForceRank, uiForceSide, uiForcePowersRank[0], uiForcePowersRank[1],
 		uiForcePowersRank[2], uiForcePowersRank[3], uiForcePowersRank[4],
 		uiForcePowersRank[5], uiForcePowersRank[6], uiForcePowersRank[7],
 		uiForcePowersRank[8], uiForcePowersRank[9], uiForcePowersRank[10],
 		uiForcePowersRank[11], uiForcePowersRank[12], uiForcePowersRank[13],
 		uiForcePowersRank[14], uiForcePowersRank[15], uiForcePowersRank[16],
-		uiForcePowersRank[17] ) );
+		//[Old JAPP Code] uiForcePowersRank[17] ) );
+		//[Gunnery System]
+		uiForcePowersRank[17], uiForcePowersRank[18], uiForcePowersRank[19],
+		uiForcePowersRank[20], uiForcePowersRank[21] ) );
+		//[End Gunnery System]
 
 	if ( gTouchedForce ) {
 		if ( teamArg && teamArg[0] ) {
