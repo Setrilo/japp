@@ -398,7 +398,10 @@ typedef enum forceMasteries_e {
 extern const char *forceMasteryLevels[NUM_FORCE_MASTERY_LEVELS];
 extern const int forceMasteryPoints[NUM_FORCE_MASTERY_LEVELS];
 
-extern int bgForcePowerCost[NUM_FORCE_POWERS][NUM_FORCE_POWER_LEVELS];
+//[Old JAPP Code] extern int bgForcePowerCost[NUM_FORCE_POWERS][NUM_FORCE_POWER_LEVELS];
+//[Gunnery System]
+extern int bgForcePowerCost[NUM_TOTAL_SKILLS][NUM_FORCE_POWER_LEVELS];
+//[End Gunnery System]
 
 // pmove->pm_flags
 #define	PMF_DUCKED			(0x00000001u)
