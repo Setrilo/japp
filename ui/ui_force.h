@@ -11,9 +11,18 @@ extern int uiMaxRank;
 extern int uiForceUsed;
 extern int uiForceAvailable;
 extern qboolean gTouchedForce;
+/*[Old JAPP Code]
 extern qboolean uiForcePowersDisabled[NUM_FORCE_POWERS];
 extern int uiForcePowersRank[NUM_FORCE_POWERS];
 extern const forceSide_t uiForcePowerDarkLight[NUM_FORCE_POWERS];
+[End Old JAPP Code]*/
+
+//[Gunnery System]
+extern qboolean uiForcePowersDisabled[NUM_TOTAL_SKILLS];
+extern int uiForcePowersRank[NUM_TOTAL_SKILLS];
+extern const forceSide_t uiForcePowerDarkLight[NUM_TOTAL_SKILLS];
+//[End Gunnery System]]
+
 extern int uiSaberColorShaders[NUM_SABER_COLORS];
 // Dots above or equal to a given rank carry a certain color.
 
