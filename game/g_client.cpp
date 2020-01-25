@@ -3247,8 +3247,57 @@ void ClientSpawn( gentity_t *ent ) {
 			Merc_On( ent );
 		}
 		else {
-			client->ps.stats[STAT_WEAPONS] = japp_spawnWeaps.integer;
+			//[OLD JAPP Code] client->ps.stats[STAT_WEAPONS] = japp_spawnWeaps.integer;
+			//[Gunnery System]
+			
+			if (client->ps.fd.forcePowerLevel[FP_SABER_OFFENSE])
+			{
+				if (!wDisable || !(wDisable & (1 << WP_SABER)))
+				{
+					client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_SABER );	//these are precached in g_items, ClearRegisteredItems()
+				}			
+			}
+			
+			/* NUAM already get melee for free earlier in the function.
+			else
+			{ //if you don't have saber attack rank then you don't get a saber
+				client->ps.stats[STAT_WEAPONS] |= (1 << WP_MELEE);
+			}*/
+			
+			if(client->skillLevel[SK_PISTOL])
+			{//player has pistol
+				if (!wDisable || !(wDisable & (1 << WP_BRYAR_PISTOL)))
+				{
+					client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_BRYAR_PISTOL );
+				}
+			}
 
+			if(client->skillLevel[SK_BLASTER])
+			{//player has blaster
+				if (!wDisable || !(wDisable & (1 << WP_BLASTER)))
+				{
+					client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_BLASTER );
+				}
+			}
+
+			if(client->skillLevel[SK_THERMAL])
+			{//player has thermals
+				if (!wDisable || !(wDisable & (1 << WP_THERMAL)))
+				{
+					client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_THERMAL );
+				}
+			}
+
+			if(client->skillLevel[SK_ROCKET])
+			{//player has rocket launcher
+				if (!wDisable || !(wDisable & (1 << WP_ROCKET_LAUNCHER)))
+				{
+					client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_ROCKET_LAUNCHER );
+				}
+			}
+			
+			//[End Gunnery System]
+			//Need a way to remove japp_spawnWeaps ammo? Possibly. Needs testing.
 			// give ammo for all available weapons
 			for ( i = WP_BRYAR_PISTOL; i <= LAST_USEABLE_WEAPON; i++ ) {
 				if ( japp_spawnWeaps.bits & (1 << i) ) {
@@ -3386,7 +3435,14 @@ void ClientSpawn( gentity_t *ent ) {
 
 	// nmckenzie: DESERT_SIEGE... or well, siege generally.  This was over-writing the max value, which was NOT good for siege.
 	if ( inSiegeWithClass == qfalse ) {
-		client->ps.ammo[AMMO_BLASTER] = 100; //ammoMax[AMMO_BLASTER]; //100 seems fair.
+		//[OLD JKA Code] client->ps.ammo[AMMO_BLASTER] = 100; //ammoMax[AMMO_BLASTER]; //100 seems fair.
+		//[Gunnery System]
+		client->ps.ammo[AMMO_BLASTER] = ammoData[AMMO_BLASTER].max * (float) client->skillLevel[SK_BLASTER]/FORCE_LEVEL_3;
+
+		client->ps.ammo[AMMO_THERMAL] = ammoData[AMMO_THERMAL].max * (float) client->skillLevel[SK_THERMAL]/FORCE_LEVEL_3;
+
+		client->ps.ammo[AMMO_ROCKETS] = ammoData[AMMO_ROCKETS].max * (float) client->skillLevel[SK_ROCKET]/FORCE_LEVEL_3;
+		//[End Gunnery System]
 	}
 
 	client->ps.rocketLockIndex = ENTITYNUM_NONE;
