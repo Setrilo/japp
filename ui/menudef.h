@@ -330,6 +330,13 @@
 #define UI_CHAT_SPOT				296
 #define UI_CHAT_TACTICAL			297
 
+//[Gunnery System]
+#define UI_FORCE_RANK_PISTOL		298
+#define UI_FORCE_RANK_BLASTER		299
+#define UI_FORCE_RANK_THERMALS		300
+#define UI_FORCE_RANK_ROCKETS		301
+//[End Gunnery System]
+
 #define VOICECHAT_GETFLAG			"getflag"			// command someone to get the flag
 #define VOICECHAT_OFFENSE			"offense"			// command someone to go on offense
 #define VOICECHAT_DEFEND			"defend"			// command someone to go on defense
