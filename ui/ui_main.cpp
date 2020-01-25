@@ -2116,7 +2116,17 @@ static int UI_OwnerDrawWidth( int ownerDraw, float scale ) {
 	case UI_FORCE_RANK_THERMALS:
 	case UI_FORCE_RANK_ROCKETS:
 	//[End Gunnery System]
-		findex = (ownerDraw - UI_FORCE_RANK) - 1;
+		//[Old JAPP Code] findex = (ownerDraw - UI_FORCE_RANK) - 1;
+		//[Gunnery System]
+		if(ownerDraw < UI_FORCE_RANK_PISTOL)
+		{
+			findex = (ownerDraw - UI_FORCE_RANK)-1;
+		}
+		else
+		{//use a different index shift for the addition skills
+			findex = (ownerDraw - UI_FORCE_RANK_PISTOL)+(UI_FORCE_RANK_SABERTHROW-UI_FORCE_RANK);
+		}
+		//[End Gunnery System]
 		//this will give us the index as long as UI_FORCE_RANK is always one below the first force rank index
 		i = uiForcePowersRank[findex];
 
@@ -2520,7 +2530,17 @@ static void UI_OwnerDraw( float x, float y, float w, float h, float text_x, floa
 	//[End Gunnery System]
 
 		//		uiForceRank
-		findex = (ownerDraw - UI_FORCE_RANK) - 1;
+		//[Old JAPP Code] findex = (ownerDraw - UI_FORCE_RANK) - 1;
+		//[Gunnery System]
+		if(ownerDraw < UI_FORCE_RANK_PISTOL)
+		{
+			findex = (ownerDraw - UI_FORCE_RANK)-1;
+		}
+		else
+		{//use a different index shift for the addition skills
+			findex = (ownerDraw - UI_FORCE_RANK_PISTOL)+(UI_FORCE_RANK_SABERTHROW-UI_FORCE_RANK);
+		}
+		//[End Gunnery System]
 		//this will give us the index as long as UI_FORCE_RANK is always one below the first force rank index
 		if ( uiForcePowerDarkLight[findex] && uiForceSide != uiForcePowerDarkLight[findex] ) {
 			VectorScale( (vector3*)color, 0.5f, (vector3*)color );
