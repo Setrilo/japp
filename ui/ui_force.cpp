@@ -66,9 +66,10 @@ int uiForcePowersRank[NUM_TOTAL_SKILLS] = {
 	//[End Gunnery System]
 	//[Old JAPP Code] 1,//FP_SABER_OFFENSE, //default to 1 point in attack
 	//[Old JAPP Code] 1,//FP_SABER_DEFENSE, //defualt to 1 point in defense
-	0//FP_SABERTHROW,
+	//[Old JAPP Code] 0//FP_SABERTHROW,
 		
 	//[Gunnery System]
+	0,//FP_SABERTHROW,
 	0,//SK_PISTOL,
 	0,//SK_BLASTER,		
 	0,//SK_THERMAL,	
