@@ -422,6 +422,19 @@ typedef enum forcePowers_e {
 	NUM_FORCE_POWERS
 } forcePowers_t;
 
+//[Gunnery System]
+typedef enum
+{
+	SK_PISTOL,		//blaster pistol
+	SK_BLASTER,		//blaster rifle skill
+	SK_THERMAL,		//thermal detenator skill
+	SK_ROCKET,		//rocket launcher skill
+	NUM_SKILLS
+} skills_t;
+
+#define NUM_TOTAL_SKILLS	(NUM_FORCE_POWERS+NUM_SKILLS)
+//[End Gunnery System]
+
 typedef enum forcePowerLevels_e {
 	FORCE_LEVEL_0,
 	FORCE_LEVEL_1,
