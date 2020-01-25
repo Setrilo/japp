@@ -176,8 +176,15 @@ int bgForcePowerCost[NUM_FORCE_POWERS][NUM_FORCE_POWER_LEVELS] = //0 == neutral
 	{ 0, 2, 5, 8 },	// Sight		//FP_SEE,//duration
 	{ 0, 1, 5, 8 },	// Saber Attack	//FP_SABER_OFFENSE,
 	{ 0, 1, 5, 8 },	// Saber Defend	//FP_SABER_DEFENSE,
-	{ 0, 4, 6, 8 }	// Saber Throw	//FP_SABERTHROW,
+	{ 0, 4, 6, 8 },	// Saber Throw	//FP_SABERTHROW,	
 	//NUM_FORCE_POWERS
+	
+	//[Gunnery System]
+	{ 0, 2, 0, 0 },	//SK_PISTOL,		//blaster pistol
+	{ 0, 4,	4, 4 },	//SK_BLASTER,		//blaster rifle skill
+	{ 0, 6,	6, 6 },	//SK_THERMAL,		//thermal detenator skill
+	{ 0, 4,	6, 8 }	//SK_ROCKET,		//rocket launcher skill
+	//[End Gunnery System]
 };
 
 const int forcePowerSorted[NUM_FORCE_POWERS] = { //rww - always use this order when drawing force powers for any reason
