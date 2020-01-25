@@ -157,7 +157,10 @@ const int forceMasteryPoints[NUM_FORCE_MASTERY_LEVELS] =
 	100		// FORCE_MASTERY_JEDI_MASTER,
 };
 
-int bgForcePowerCost[NUM_FORCE_POWERS][NUM_FORCE_POWER_LEVELS] = //0 == neutral
+//[Old JAPP Code] int bgForcePowerCost[NUM_FORCE_POWERS][NUM_FORCE_POWER_LEVELS] = //0 == neutral
+//[Gunnery System]
+int bgForcePowerCost[NUM_TOTAL_SKILLS][NUM_FORCE_POWER_LEVELS] = //0 == neutral
+//[End Gunnery System]
 {
 	{ 0, 2, 4, 6 },	// Heal			// FP_HEAL
 	{ 0, 0, 2, 6 },	// Jump			//FP_LEVITATION,//hold/duration
