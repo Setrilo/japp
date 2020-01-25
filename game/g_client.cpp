@@ -2880,6 +2880,9 @@ qboolean WP_HasForcePowers( const playerState_t *ps );
 void ClientSpawn( gentity_t *ent ) {
 	int i, index = 0, saveSaberNum = ENTITYNUM_NONE, savedSiegeIndex = 0, maxHealth = 100, gameFlags, savedPing, accuracy_hits,
 		accuracy_shots, eventSequence, persistant[MAX_PERSISTANT];
+	//[Gunnery System]
+	int savedSkill[NUM_SKILLS];
+	//[End Gunnery System]
 	vector3 spawn_origin, spawn_angles;
 	gentity_t *spawnPoint = NULL;
 	gclient_t *client = NULL;
@@ -3044,6 +3047,13 @@ void ClientSpawn( gentity_t *ent ) {
 	saveSaberNum = client->ps.saberEntityNum;
 
 	savedSiegeIndex = client->siegeClass;
+	
+	//[Gunnery System]
+	for(i = 0; i < NUM_SKILLS; i++)
+	{
+		savedSkill[i] = client->skillLevel[i];
+	}
+	//[Gunnery System]
 
 	for ( i = 0; i < MAX_SABERS; i++ ) {
 		saberSaved[i] = client->saber[i];
@@ -3087,6 +3097,13 @@ void ClientSpawn( gentity_t *ent ) {
 	}
 
 	client->siegeClass = savedSiegeIndex;
+	
+	//[Gunnery System]
+	for(i = 0; i < NUM_SKILLS; i++)
+	{
+		client->skillLevel[i] = savedSkill[i];
+	}
+	//[End Gunnery System]
 
 	for ( i = 0; i < MAX_SABERS; i++ ) {
 		client->saber[i] = saberSaved[i];
