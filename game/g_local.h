@@ -651,6 +651,11 @@ struct gclient_s {
 	struct {
 		int					drain, lightning;
 	} forceDebounce;
+	//[Gunnery System]
+	qboolean	skillUpdated;			//indicates that we've updated our skill points and should let the player's client know.
+	int			skillDebounce;			//debouncer for skill point updates to the player client
+	int			skillLevel[NUM_SKILLS];
+	//[End Gunnery System]
 };
 
 typedef struct interestPoint_s {
