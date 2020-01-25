@@ -2740,6 +2740,12 @@ qboolean Item_OwnerDraw_HandleKey( itemDef_t *item, int key ) {
 			case UI_FORCE_RANK_SABERATTACK:
 			case UI_FORCE_RANK_SABERDEFEND:
 			case UI_FORCE_RANK_SABERTHROW:
+			//[Gunnery System]
+			case UI_FORCE_RANK_PISTOL:
+			case UI_FORCE_RANK_BLASTER:
+			case UI_FORCE_RANK_THERMALS:
+			case UI_FORCE_RANK_ROCKETS:
+			//[End Gunnery System]
 				if ( !Rect_ContainsPoint( &item->window.rect, DC->cursorx, DC->cursory ) )
 					return qfalse;
 				break;
