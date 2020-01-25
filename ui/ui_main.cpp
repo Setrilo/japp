@@ -3455,7 +3455,18 @@ static qboolean UI_OwnerDrawHandleKey( int ownerDraw, uint32_t flags, float *spe
 	case UI_FORCE_RANK_THERMALS:
 	case UI_FORCE_RANK_ROCKETS:
 	//[End Gunnery System]
-		findex = (ownerDraw - UI_FORCE_RANK) - 1;
+
+		//[Old JAPP Code] findex = (ownerDraw - UI_FORCE_RANK) - 1;
+		//[Gunnery System]
+		if(ownerDraw < UI_FORCE_RANK_PISTOL)
+		{
+			findex = (ownerDraw - UI_FORCE_RANK)-1;
+		}
+		else
+		{//use a different index shift for the addition skills
+			findex = (ownerDraw - UI_FORCE_RANK_PISTOL)+(UI_FORCE_RANK_SABERTHROW-UI_FORCE_RANK);
+		}
+		//[End Gunnery System]
 		//this will give us the index as long as UI_FORCE_RANK is always one below the first force rank index
 		return UI_ForcePowerRank_HandleKey( flags, special, key, uiForcePowersRank[findex], 0, NUM_FORCE_POWER_LEVELS - 1, ownerDraw );
 	case UI_EFFECTS:
