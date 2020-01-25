@@ -407,7 +407,10 @@ void UpdateForceUsed( void ) {
 	}
 
 	// Make sure that we're still legal.
-	for ( curpower = 0; curpower < NUM_FORCE_POWERS; curpower++ ) {	// Make sure that our ranks are within legal limits.
+	//[Old JAPP Code] for ( curpower = 0; curpower < NUM_FORCE_POWERS; curpower++ ) {	// Make sure that our ranks are within legal limits.
+	//[Gunnery System]
+	for ( curpower = 0; curpower < NUM_TOTAL_SKILLS; curpower++ ) {
+	//[End Gunnery System]
 		if ( uiForcePowersRank[curpower]<0 )
 			uiForcePowersRank[curpower] = 0;
 		else if ( uiForcePowersRank[curpower] >= NUM_FORCE_POWER_LEVELS )
