@@ -2110,6 +2110,12 @@ static int UI_OwnerDrawWidth( int ownerDraw, float scale ) {
 	case UI_FORCE_RANK_SABERATTACK:
 	case UI_FORCE_RANK_SABERDEFEND:
 	case UI_FORCE_RANK_SABERTHROW:
+	//[Gunnery System]
+	case UI_FORCE_RANK_PISTOL:
+	case UI_FORCE_RANK_BLASTER:
+	case UI_FORCE_RANK_THERMALS:
+	case UI_FORCE_RANK_ROCKETS:
+	//[End Gunnery System]
 		findex = (ownerDraw - UI_FORCE_RANK) - 1;
 		//this will give us the index as long as UI_FORCE_RANK is always one below the first force rank index
 		i = uiForcePowersRank[findex];
@@ -2506,6 +2512,12 @@ static void UI_OwnerDraw( float x, float y, float w, float h, float text_x, floa
 	case UI_FORCE_RANK_SABERATTACK:
 	case UI_FORCE_RANK_SABERDEFEND:
 	case UI_FORCE_RANK_SABERTHROW:
+	//[Gunnery System]
+	case UI_FORCE_RANK_PISTOL:
+	case UI_FORCE_RANK_BLASTER:
+	case UI_FORCE_RANK_THERMALS:
+	case UI_FORCE_RANK_ROCKETS:
+	//[End Gunnery System]
 
 		//		uiForceRank
 		findex = (ownerDraw - UI_FORCE_RANK) - 1;
@@ -3417,6 +3429,12 @@ static qboolean UI_OwnerDrawHandleKey( int ownerDraw, uint32_t flags, float *spe
 	case UI_FORCE_RANK_SABERATTACK:
 	case UI_FORCE_RANK_SABERDEFEND:
 	case UI_FORCE_RANK_SABERTHROW:
+	//[Gunnery System]
+	case UI_FORCE_RANK_PISTOL:
+	case UI_FORCE_RANK_BLASTER:
+	case UI_FORCE_RANK_THERMALS:
+	case UI_FORCE_RANK_ROCKETS:
+	//[End Gunnery System]
 		findex = (ownerDraw - UI_FORCE_RANK) - 1;
 		//this will give us the index as long as UI_FORCE_RANK is always one below the first force rank index
 		return UI_ForcePowerRank_HandleKey( flags, special, key, uiForcePowersRank[findex], 0, NUM_FORCE_POWER_LEVELS - 1, ownerDraw );
