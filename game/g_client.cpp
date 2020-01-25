@@ -3454,11 +3454,11 @@ void ClientSpawn( gentity_t *ent ) {
 	if ( inSiegeWithClass == qfalse ) {
 		//[OLD JKA Code] client->ps.ammo[AMMO_BLASTER] = 100; //ammoMax[AMMO_BLASTER]; //100 seems fair.
 		//[Gunnery System]
-		client->ps.ammo[AMMO_BLASTER] = ammoData[AMMO_BLASTER].max * (float) client->skillLevel[SK_BLASTER]/FORCE_LEVEL_3;
+		client->ps.ammo[AMMO_BLASTER] = ammoMax[AMMO_BLASTER] * (float) client->skillLevel[SK_BLASTER]/FORCE_LEVEL_3;
 
-		client->ps.ammo[AMMO_THERMAL] = ammoData[AMMO_THERMAL].max * (float) client->skillLevel[SK_THERMAL]/FORCE_LEVEL_3;
+		client->ps.ammo[AMMO_THERMAL] = ammoMax[AMMO_THERMAL] * (float) client->skillLevel[SK_THERMAL]/FORCE_LEVEL_3;
 
-		client->ps.ammo[AMMO_ROCKETS] = ammoData[AMMO_ROCKETS].max * (float) client->skillLevel[SK_ROCKET]/FORCE_LEVEL_3;
+		client->ps.ammo[AMMO_ROCKETS] = ammoMax[AMMO_ROCKETS] * (float) client->skillLevel[SK_ROCKET]/FORCE_LEVEL_3;
 		//[End Gunnery System]
 	}
 
